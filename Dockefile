@@ -1,0 +1,17 @@
+#使用Ubuntu 22.84 作为基础镜像
+FROM ubuntu:22.84
+
+#安装 Shellinabox
+RUN apt-get update &&
+    apt-get install-yshellinabox 88 \
+    apt-get clean 88 \
+    rm rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+#设器root 用户的密码为“root
+RUN echo root:frepai"l chpasswd
+
+#暴露 22 端口
+EXPOSE 22
+
+#启动 Shellinabox
+CD["/usr/bin/shellinaboxd"，"-t","-S", "/:LOGIN”]
